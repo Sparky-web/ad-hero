@@ -1,38 +1,115 @@
-.App {
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+* {
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+}
+
+:root {
+  font-size: 16px;
+  font-family: 'Montserrat', sans-serif;
+
+  --background_content: #FEFEFE;
+  --primary: #FD6746;
+  --text: #474E63;
+  --secondary: #474E63;
+
+}
+
+.title {
+  color: var(--text);
+  font-weight: bold;
+  font-size: 24px;
+}
+.subtitle {
+  color: var(--text);
+  font-size: 18px;
+}
+
+.slideAnimate {
+  overflow: hidden !important;
+  position: absolute;
+}
+
+
+.App {position: relative}
+
+.loading-screen {
+  background: var(--background_content);
+  height: 100vh;
+  width: 100%;
+  font-size: 64px;
+  font-weight: bold;
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.loading-screen__logo {
+  position: relative;
+}
+.loading-screen__logo > div {
+  position: absolute;
+  transform: rotate(45deg);
+  height: 200%;
+  width: 25%;
+  background: white;
+  opacity: 0.35;
+  box-shadow: 0 0 20px 20px white;
+
+  animation-name: loading_animation;
+  animation-duration: 0.5s;
+  animation-iteration-count: infinite;
+}
+
+.choose-lk {
+  background: white;
+  color: black;
+  height: 100vh;
+  width: 100%;
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  gap: 1rem;
+  text-align: center;
+}
+.choose-lk__header {
+  font-size: 36px;
+}
+
+@keyframes loading_animation {
+  from {
+    left: -50%
+  }
+  to {
+    left: 150%;
+  }
+}
+
+.steps__img {
+  margin: auto;
+  max-width: 75%;
+}
+.ad-steps {
+  height: 100vh;
+  width: 100%;
+  background: var(--background_content);
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  gap: 1rem;
+  padding: 1rem;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
+.ad-steps__step {
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
 }
