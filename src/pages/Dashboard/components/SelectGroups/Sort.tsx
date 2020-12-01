@@ -18,7 +18,6 @@ function Sort({updateSort, sort, close}: Partial<GroupsContextProps>) {
     }
 
     const handleSubmit = () => {
-        console.log(updateSort)
         if(updateSort) {
             updateSort(sortBy, direction)
         }
@@ -26,7 +25,6 @@ function Sort({updateSort, sort, close}: Partial<GroupsContextProps>) {
     }
 
     useEffect(() => {
-        console.log(sort)
         if (sort) {
             setDirection(sort.type)
             setSortBy(sort.sortBy)

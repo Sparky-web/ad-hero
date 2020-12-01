@@ -18,6 +18,7 @@
     "@vkontakte/icons": "^1.55.0",
     "@vkontakte/vk-bridge": "^2.3.0",
     "@vkontakte/vkui": "^3.13.1",
+    "axios": "^0.21.0",
     "firebase": "^8.1.1",
     "framer-motion": "^2.9.4",
     "history": "^5.0.0",

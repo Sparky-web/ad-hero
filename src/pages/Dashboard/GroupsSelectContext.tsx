@@ -1,7 +1,10 @@
 import React, {createContext, ReactNode, useContext, useEffect, useState} from 'react';
 import {FiltersInterface, GroupInterface, SortBy, SortDirection, SortInterface} from "./interface";
 import {FirebaseContext} from "../../context/FirebaseContext";
-import { useCollection } from 'react-firebase-hooks/firestore';
+import axios from "axios"
+import firebase from "firebase";
+import useSWR from "swr/esm/use-swr";
+
 
 export type GroupsContextProps = {
     groups: GroupInterface[],
@@ -30,7 +33,7 @@ export const GroupsSelectContext = createContext<GroupsContextProps>({
     filters: {
         price: {
             min: 0,
-            max: 100
+            max: 900
         },
         subscribers: {
             min: 0,
@@ -63,7 +66,7 @@ export function GroupsSelectProvider(props: { children: ReactNode }) {
     const [filters, setFilters] = useState<FiltersInterface>({
         price: {
             min: 0,
-            max: 100
+            max: 900
         },
         subscribers: {
             min: 0,
@@ -77,12 +80,14 @@ export function GroupsSelectProvider(props: { children: ReactNode }) {
     })
 
 
+    const {data, error} = useSWR(
+        ["getGroups", filters],
+        async (method: string) => {
+            const getGroups = firebase?.functions?.().httpsCallable(method);
+            return getGroups?.(filters);
+    })
 
-    const [value, loading, error] = useCollection(
-        firebase?.firestore ? firebase.firestore()?.collection("groups") : null,
-        {snapshotListenOptions: {includeMetadataChanges: true}}
-    )
-
+    console.log(data)
 
     const [sort, setSort] = useState<SortInterface>({
         type: "increment",
@@ -90,10 +95,7 @@ export function GroupsSelectProvider(props: { children: ReactNode }) {
     })
 
     const updateFilters = (changes: Partial<FiltersInterface>) => {
-        setFilters({
-            ...filters,
-            ...changes
-        })
+        setFilters({...filters, ...changes})
     }
     const updateSort = (sortBy: SortBy, type: SortDirection) => {
         setSort({sortBy, type})

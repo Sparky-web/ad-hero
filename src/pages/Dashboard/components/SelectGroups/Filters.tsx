@@ -35,7 +35,7 @@ function Filters({updateFilters, filters, close}: Partial<GroupsContextProps>) {
         max: 0
     })
     const handleSubsChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>, type: "min" | "max") => {
-        setSubsRange({...subsRange, [type]: e.target.value})
+        setSubsRange({...subsRange, [type]: +e.target.value || ""})
     }
 
     const [viewsRange, setViewsRange] = useState<Range>({
@@ -46,7 +46,7 @@ function Filters({updateFilters, filters, close}: Partial<GroupsContextProps>) {
         e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
         type: "min" | "max"
     ) => {
-        setViewsRange({...subsRange, [type]: e.target.value})
+        setViewsRange({...subsRange, [type]: +e.target.value || ""})
     }
 
     const [priceRange, setPriceRange] = useState<Range>({
@@ -57,7 +57,7 @@ function Filters({updateFilters, filters, close}: Partial<GroupsContextProps>) {
         e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
         type: "min" | "max"
     ) => {
-        setPriceRange({...subsRange, [type]: e.target.value})
+        setPriceRange({...subsRange, [type]: +e.target.value || ""})
     }
 
     const [withAutoPosting, setWithAutoPosting] = useState(false)

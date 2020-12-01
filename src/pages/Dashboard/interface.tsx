@@ -16,7 +16,7 @@ export interface GroupInterface {
 }
 
 export type SortBy = "subscribers" | "activeSubscribers"
-| "viewsPerPost" | "price"
+    | "viewsPerPost" | "price"
 export type SortDirection = "increment" | "decrement"
 
 export interface SortInterface {
@@ -33,6 +33,18 @@ export interface FiltersInterface {
     subscribers: FilterInterface,
     viewsPerPost: FilterInterface
     price: FilterInterface,
+    withAutoPosting: boolean
+}
+
+export interface MinMaxNotParsed {
+    min: number | string,
+    max: number | string,
+}
+
+export interface FiltersNotParsed {
+    subscribers: MinMaxNotParsed,
+    viewsPerPost: MinMaxNotParsed
+    price: MinMaxNotParsed,
     withAutoPosting: boolean
 }
 

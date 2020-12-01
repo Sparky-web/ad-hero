@@ -19,6 +19,7 @@ export const FirebaseProvider = (props: { children: React.ReactNode; }) => {
             appId: "1:187100490145:web:c27f584c667e11177a03e0",
             measurementId: "G-21LZH2FZ9Y"
         })
+        _firebase.functions().useFunctionsEmulator('http://localhost:5001')
         App = app
         setFirebase(app)
     }, [])
