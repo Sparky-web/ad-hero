@@ -1,6 +1,6 @@
 import React, {useContext} from 'react';
 import {GroupsSelectContext, GroupsSelectProvider} from "../GroupsSelectContext";
-import SelectGroups from "../components/SelectGroups/SelectGroups";
+import Index from "../components/SelectGroups";
 import { Page } from '../components/Service/Blocks';
 
 function Ad() {
@@ -8,7 +8,7 @@ function Ad() {
 
     return (
         <Page>
-            <GroupsSelectProvider><SelectGroups /></GroupsSelectProvider>
+            <GroupsSelectProvider><Index /></GroupsSelectProvider>
         </Page>
     )
 }

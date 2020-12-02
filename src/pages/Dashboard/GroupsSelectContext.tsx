@@ -1,10 +1,8 @@
 import React, {createContext, ReactNode, useContext, useEffect, useState} from 'react';
-import {FiltersInterface, GroupInterface, SortBy, SortDirection, SortInterface} from "./interface";
-import {FirebaseContext} from "../../context/FirebaseContext";
-import axios from "axios"
-import firebase from "firebase";
-import useSWR from "swr/esm/use-swr";
-
+import {FiltersInterface} from "../../../shared/types/Filters";
+import {GroupInterface} from "../../../shared/types/Groups";
+import {SortBy, SortDirection, SortInterface} from "../../../shared/types/Sort";
+import {q, client} from "../../context/db";
 
 export type GroupsContextProps = {
     groups: GroupInterface[],
@@ -19,40 +17,10 @@ export type GroupsContextProps = {
     [key: string]: any;
 };
 
-export const GroupsSelectContext = createContext<GroupsContextProps>({
-    groups: [],
-    selectGroup: () => {
-    },
-    isSelected: (): boolean => true,
-    deselectGroup: () => {
-    },
-    updateFilters: (changes: Partial<FiltersInterface>) => {
-    },
-    updateSort: () => {
-    },
-    filters: {
-        price: {
-            min: 0,
-            max: 900
-        },
-        subscribers: {
-            min: 0,
-            max: 100
-        },
-        viewsPerPost: {
-            min: 0,
-            max: 100
-        },
-        withAutoPosting: false
-    },
-    sort: {
-        type: "increment",
-        sortBy: "price"
-    }
-})
+export const GroupsSelectContext = createContext<Partial<GroupsContextProps>>({})
 
 export function GroupsSelectProvider(props: { children: ReactNode }) {
-    const firebase = useContext(FirebaseContext)
+
 
     const [groups, setGroups] = useState<GroupInterface[]>([
         {
@@ -79,15 +47,16 @@ export function GroupsSelectProvider(props: { children: ReactNode }) {
         withAutoPosting: false
     })
 
-
-    const {data, error} = useSWR(
-        ["getGroups", filters],
-        async (method: string) => {
-            const getGroups = firebase?.functions?.().httpsCallable(method);
-            return getGroups?.(filters);
-    })
-
-    console.log(data)
+    useEffect(() => {
+        async function start() {
+            await client.query(
+                q.Paginate(
+                    q.Range(q.Match(q.Index("all_groups")), [0, 0], [5999, 5001])
+                )
+            ).then(console.log)
+        }
+        start()
+    }, [])
 
     const [sort, setSort] = useState<SortInterface>({
         type: "increment",

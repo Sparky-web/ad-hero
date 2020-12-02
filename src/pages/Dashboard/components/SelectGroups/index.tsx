@@ -10,7 +10,7 @@ import Filters from "./Filters";
 import Sort from "./Sort";
 import TwoColumns from "../Service/TwoColumns";
 
-function SelectGroups() {
+function Index() {
     const contextProps = useContext(GroupsSelectContext)
 
     const navigate = useNavigate()
@@ -67,4 +67,4 @@ function SelectGroups() {
     );
 }
 
-export default SelectGroups;
+export default Index;

@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {GroupsContextProps} from "../../GroupsSelectContext";
 import {Group10px, Group20px} from "../Service/Blocks";
 import {Button, MenuItem, Select, Typography} from "@material-ui/core";
-import {SortBy, SortDirection} from "../../interface";
+import {SortBy, SortDirection} from "../../../../../shared/types/Sort";
 
 
 function Sort({updateSort, sort, close}: Partial<GroupsContextProps>) {

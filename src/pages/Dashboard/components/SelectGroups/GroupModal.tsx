@@ -5,7 +5,7 @@ import useSWR from "swr"
 import {FirebaseContext} from "../../../../context/FirebaseContext";
 import styled from "styled-components";
 import {Typography} from "@material-ui/core";
-import {GroupInterface} from "../../interface";
+import {GroupInterface} from "../../../../../shared/types/Groups";
 import Loading from "../Service/Loading";
 import Error from "../Service/Error";
 

@@ -5,7 +5,7 @@ import {Group} from "./Group";
 import {Button} from "@material-ui/core";
 import {Icon28CancelOutline} from "@vkontakte/icons";
 
-function Groups(props: GroupsContextProps) {
+function Groups(props: Partial<GroupsContextProps>) {
     const {
         groups,
         selectGroup,
@@ -16,7 +16,7 @@ function Groups(props: GroupsContextProps) {
     return (
         <Group10px>
             {
-                groups.map(el => (
+                groups && selectGroup && deselectGroup && isSelected && groups.map(el => (
                     <Group name={el.name}
                            description={`${el.subscribers} подписчиков`}
                            button={
